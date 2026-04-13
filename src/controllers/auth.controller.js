@@ -1,5 +1,5 @@
 const userModel = require("../models/user.model");
-
+const jwt = require("jsonwebtoken");
 
 /** 
 * - User register controller
@@ -26,7 +26,21 @@ async function userRegistrationController(req,res){
         name,
         password
     })
+    const token = jwt.sign({userID: user._id}, process.env.JWT_SECRET, { expiresIn: "3d" })
+
+    res.cookies("token", token);
+    res.status(201).json({
+        user:{
+            _id: user._id,
+            email: user.email,
+            name: user.name
+        },
+        token
+    })
+
 }
+
+
 module.exports = {
     userRegistrationController
 }
