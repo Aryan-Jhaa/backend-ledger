@@ -109,6 +109,10 @@ async function userLogoutController(req, res) {
 }
 
 
+// #region agent log
+fetch('http://127.0.0.1:7445/ingest/215e0bef-298b-4889-aae0-85681d4bf530',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'edeb11'},body:JSON.stringify({sessionId:'edeb11',runId:'pre-fix',hypothesisId:'H3',location:'src/controllers/auth.controller.js:112',message:'Auth controller functions defined',data:{userRegisterControllerType:typeof userRegisterController,userLoginControllerType:typeof userLoginController,userLogoutControllerType:typeof userLogoutController},timestamp:Date.now()})}).catch(()=>{});
+// #endregion
+
 module.exports = {
     userRegisterController,
     userLoginController,
